@@ -1,32 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import CourseList from "../components/CourseList";
+import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import LecturersList from "../components/LecturersList";
-import "../styles/users.css";
 
 const BASE = "http://localhost:8080/api/v1";
 
-const Users = () => {
+const Courses = () => {
   const navigate = useNavigate();
-  const [lecturers, setLecturers] = useState([]);
+  const [courses, setCourses] = useState([]);
   const { token } = useFetch();
 
   useEffect(() => {
-    const getLecturers = async () => {
-      await fetch(`${BASE}/admin/instructor`, {
+    const getCourses = async () => {
+      await fetch(`${BASE}/admin/subject?student=false`, {
         mode: "cors",
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((response) => response.json())
         .then((data) => {
-          setLecturers(data.data);
+          setCourses(data.data);
         })
         .catch((error) => {
           console.error("Failed to fetch lecturers:", error);
         });
     };
 
-    getLecturers();
+    getCourses();
   }, [token]);
 
   const handleClick = () => {
@@ -36,12 +35,12 @@ const Users = () => {
   return (
     <div className="layout">
       <div className="add">
-        <h2>Users</h2>
-        <button onClick={handleClick}>Add User</button>
+        <h2>Courses</h2>
+        <button onClick={handleClick}>Add Course</button>
       </div>
-      <LecturersList lecturers={lecturers} />
+      <CourseList courses={courses} />
     </div>
   );
 };
 
-export default Users;
+export default Courses;

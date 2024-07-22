@@ -12,6 +12,11 @@ import { useState, useEffect } from "react";
 import MainContent from "./components/MainContent";
 import Users from "./pages/Users";
 import UserForm from "./components/UserForm";
+import Students from "./pages/Students";
+import AddStudent from "./pages/AddStudent";
+import Attendance from "./pages/Attendance";
+import Courses from "./pages/Courses";
+import AddCourse from "./components/AddCourse";
 
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
@@ -19,11 +24,11 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
-    const expiryDate = localStorage.getItem("expiryDate");
+    const expiryDate = new Date(localStorage.getItem("expiryDate"));
 
     if (token && expiryDate) {
       const now = Date.now();
-      if (now > parseInt(expiryDate, 10)) {
+      if (now > expiryDate) {
         // Token has expired
         localStorage.clear();
         setJwtToken(null);
@@ -58,7 +63,11 @@ function App() {
             <Route index element={<MainContent />} />
             <Route path="users" element={<Users />} />
             <Route path="users/add" element={<UserForm />} />
-            <Route path="courses" element={<Users />} />
+            <Route path="courses" element={<Courses />} />
+            <Route path="courses/add" element={<AddCourse />} />
+            <Route path="students" element={<Students />} />
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="students/add" element={<AddStudent />} />
           </Route>
         </Routes>
       </Router>

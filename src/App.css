@@ -67,3 +67,32 @@ table tbody tr:last-child td {
   flex-direction: column;
   gap: 50px;
 }
+
+.selections {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--card-bg);
+}
+.print {
+  align-self: flex-start;
+}
+.sort select {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 120px;
+  background-color: #fff;
+  padding: 10px;
+  font-size: 1rem;
+  appearance: none;
+  background-image: url("../public/sort.svg");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+.sort select:focus {
+  outline: #007bff;
+  border-color: #007bff;
+}

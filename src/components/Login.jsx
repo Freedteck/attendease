@@ -16,7 +16,7 @@ const Form = ({ setJwtToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
     postReq(userId, password, category, navigate, setError, setJwtToken); // Pass setJwtToken function
   };
 

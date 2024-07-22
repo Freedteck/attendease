@@ -7,13 +7,14 @@ const Header = ({ jwtToken }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!jwtToken);
 
   const handleLogin = () => {
-    if (jwtToken) {
-      localStorage.clear();
-      setIsLoggedIn(false);
-      navigate("/login");
-    } else {
-      navigate("/login");
-    }
+    setIsLoggedIn(true);
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Header = ({ jwtToken }) => {
           <div className="text">AttendEase</div>
         </div>
         {!isLoggedIn && <button onClick={handleLogin}>Login</button>}
-        {isLoggedIn && <button onClick={handleLogin}>Logout</button>}
+        {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
       </div>
     </header>
   );

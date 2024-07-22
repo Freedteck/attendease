@@ -21,7 +21,7 @@ const postReq = (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id: userId, password }),
+    body: JSON.stringify({ id: userId, password, role: category }),
   })
     .then((response) => {
       if (!response.ok) {
@@ -30,7 +30,6 @@ const postReq = (
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       if (
         data.user_roles.includes("ROLE_SUPER_ADMIN") &&
         category === "admin"
