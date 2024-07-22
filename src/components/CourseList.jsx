@@ -1,4 +1,21 @@
+import { useState } from "react";
+
 const CourseList = ({ courses }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredCourses = courses.filter((course) => {
+    const fullName = `${course.subject_title}`.toLowerCase();
+
+    return (
+      fullName.includes(searchQuery.toLowerCase()) ||
+      course.subject_code.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+
   return (
     <section className="tables">
       <div className="caption">
@@ -8,6 +25,8 @@ const CourseList = ({ courses }) => {
           name="search"
           id="search"
           placeholder="Search..."
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
       </div>
       <table>
@@ -21,7 +40,7 @@ const CourseList = ({ courses }) => {
           </tr>
         </thead>
         <tbody>
-          {courses.map((course, index) => (
+          {filteredCourses.map((course, index) => (
             <tr key={`${course[0]}${index}${course[1]}`}>
               <td>{index + 1}</td>
               <td>{course.subject_code}</td>

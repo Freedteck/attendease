@@ -47,4 +47,9 @@ button:hover {
   main .row {
     flex-direction: column;
   }
+  div.container,
+  .form {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

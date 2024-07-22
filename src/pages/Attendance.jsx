@@ -22,6 +22,7 @@ const Attendance = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          // setSubjectCode(data.data.subjectId);
           setCourses(data.data);
         })
         .catch((error) => {
