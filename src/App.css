@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 60px;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+main .row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tables {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+}
+.tables table {
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+table thead {
+  background-color: var(--bg-color);
+  box-shadow: 0 1px 3px 0 #899bbd;
+}
+table td,
+table th {
+  padding: 20px;
+  border-bottom: 1px solid var(--primary-color);
+}
+table th {
+  text-align: left;
+}
+table tbody tr:hover {
+  background-color: var(--bg-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.tables h3 {
+  font-weight: 500;
+
+  font-size: 1.5rem;
+  text-align: left;
+  flex-shrink: 0;
+}
+.caption input[type="search"] {
+  width: auto;
+}
+.layout {
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  gap: 50px;
 }
