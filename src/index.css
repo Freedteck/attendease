@@ -42,3 +42,9 @@ button:hover {
   border: 1px solid var(--secondary-color);
   color: var(--secondary-color);
 }
+
+@media (max-width: 1000px) {
+  main .row {
+    flex-direction: column;
+  }
+}
