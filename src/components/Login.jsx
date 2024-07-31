@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/form.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import postReq from "../logic/postReq";
 
 const Form = ({ setJwtToken }) => {
@@ -66,6 +66,16 @@ const Form = ({ setJwtToken }) => {
                 onChange={handleCategoryChange}
               />
               Admin
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="student"
+                name="role"
+                checked={category === "student"}
+                onChange={handleCategoryChange}
+              />
+              Student
             </label>
           </fieldset>
           {error && <p className="error">{error}</p>}{" "}

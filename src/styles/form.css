@@ -33,6 +33,7 @@ input[type="date"],
 input[type="email"],
 input[type="tel"],
 input[type="search"],
+input[type="number"],
 select,
 textarea {
   width: 100%;
@@ -50,7 +51,8 @@ input[type="radio"] {
 .radio {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px 20px;
+  flex-wrap: wrap;
 }
 .radio label {
   margin-bottom: 15px;
@@ -59,7 +61,7 @@ input[type="radio"] {
   gap: 8px;
   border: 1px solid var(--primary-color);
   padding: 10px;
-  min-width: 150px;
+  min-width: 100px;
   border-radius: 4px;
 }
 .btns {

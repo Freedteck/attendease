@@ -24,6 +24,7 @@ const postReq = (
     body: JSON.stringify({ id: userId, password, role: category }),
   })
     .then((response) => {
+      console.log(response);
       if (!response.ok) {
         throw new Error("Login failed");
       }
@@ -42,6 +43,12 @@ const postReq = (
       ) {
         setToken(data.jwt_token, data.expiryDate, data.user_roles);
         navigate("/");
+      } else if (
+        data.user_roles.includes("ROLE_STUDENT") &&
+        category === "student"
+      ) {
+        setToken(data.jwt_token, data.expiryDate, data.user_roles);
+        navigate("/student");
       } else {
         localStorage.clear();
         throw new Error("Login failed");

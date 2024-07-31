@@ -17,6 +17,7 @@ import AddStudent from "./pages/AddStudent";
 import Attendance from "./pages/Attendance";
 import Courses from "./pages/Courses";
 import AddCourse from "./components/AddCourse";
+import Student from "./pages/Student";
 
 const BASE = "http://localhost:8080/api/v1";
 
@@ -71,6 +72,7 @@ function App() {
             <Route path="attendance" element={<Attendance BASE={BASE} />} />
             <Route path="students/add" element={<AddStudent BASE={BASE} />} />
           </Route>
+          <Route path="student" element={<Student BASE={BASE} />} />
         </Routes>
       </Router>
     </div>
