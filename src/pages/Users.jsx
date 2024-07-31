@@ -25,7 +25,7 @@ const Users = ({ BASE }) => {
     };
 
     getLecturers();
-  }, [token]);
+  }, [token, BASE]);
 
   const handleClick = () => {
     navigate("./add");

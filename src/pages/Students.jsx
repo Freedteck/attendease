@@ -26,7 +26,7 @@ const Students = ({ BASE }) => {
     };
 
     getStudents();
-  }, [token, subjectCode]);
+  }, [token, subjectCode, BASE]);
 
   const handleClick = () => {
     navigate("./add");
@@ -85,7 +85,7 @@ const Students = ({ BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
 
   return (
     <div className="layout">

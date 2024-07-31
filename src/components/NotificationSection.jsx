@@ -32,7 +32,7 @@ const NotificationSection = ({ BASE }) => {
       .catch((error) => {
         console.error("Login failed:", error);
       });
-  }, [token]);
+  }, [token, BASE]);
 
   useEffect(() => {
     handleGetNotification();

@@ -26,7 +26,7 @@ const AddStudent = ({ BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
 
   const addStudent = async () => {
     await fetch(

@@ -22,7 +22,7 @@ const Banner = ({ BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
   return (
     <div className="banner">
       <h1 className="welcome">

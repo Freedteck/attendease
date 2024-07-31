@@ -24,7 +24,7 @@ const Courses = ({ BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
 
   const handleClick = () => {
     navigate("./add");

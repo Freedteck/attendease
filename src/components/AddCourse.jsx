@@ -54,7 +54,7 @@ const AddCourse = ({ BASE }) => {
     };
 
     getLecturers();
-  }, [token]);
+  }, [token, BASE]);
 
   return (
     <div className="layout">

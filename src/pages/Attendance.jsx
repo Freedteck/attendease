@@ -30,7 +30,7 @@ const Attendance = ({ BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
 
   useEffect(() => {
     const getDates = async () => {
@@ -52,7 +52,7 @@ const Attendance = ({ BASE }) => {
     };
 
     getDates();
-  }, [token, subjectCode]);
+  }, [token, subjectCode, BASE]);
 
   useEffect(() => {
     const getSheet = async () => {
@@ -75,7 +75,7 @@ const Attendance = ({ BASE }) => {
     if (date) {
       getSheet();
     }
-  }, [token, subjectCode, date, sortId]);
+  }, [token, subjectCode, date, sortId, BASE]);
 
   const printAttendance = async () => {
     await fetch(
