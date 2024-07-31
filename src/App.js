@@ -18,7 +18,7 @@ import Attendance from "./pages/Attendance";
 import Courses from "./pages/Courses";
 import AddCourse from "./components/AddCourse";
 
-const BASE = "http://192.168.43.49:8080/api/v1";
+const BASE = "http://localhost:8080/api/v1";
 
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
