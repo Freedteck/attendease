@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import AttendanceSheet from "../components/AttendanceSheet";
 import useFetch from "../hooks/useFetch";
 import { saveAs } from "file-saver";
-const BASE = "http://localhost:8080/api/v1";
 
-const Attendance = () => {
+const Attendance = ({ BASE }) => {
   const [sheetDisplayed, setSheetDisplayed] = useState(false);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);

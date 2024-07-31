@@ -3,9 +3,7 @@ import CourseList from "../components/CourseList";
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const Courses = () => {
+const Courses = ({ BASE }) => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const { token } = useFetch();

@@ -4,9 +4,7 @@ import useFetch from "../hooks/useFetch";
 import LecturersList from "../components/LecturersList";
 import "../styles/users.css";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const Users = () => {
+const Users = ({ BASE }) => {
   const navigate = useNavigate();
   const [lecturers, setLecturers] = useState([]);
   const { token } = useFetch();

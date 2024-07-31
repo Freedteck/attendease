@@ -18,6 +18,8 @@ import Attendance from "./pages/Attendance";
 import Courses from "./pages/Courses";
 import AddCourse from "./components/AddCourse";
 
+const BASE = "http://192.168.43.49:8080/api/v1";
+
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
   const [isTokenExpired, setIsTokenExpired] = useState(false);
@@ -60,14 +62,14 @@ function App() {
             path="/"
             element={jwtToken ? <Home /> : <Navigate to="/login" />}
           >
-            <Route index element={<MainContent />} />
-            <Route path="users" element={<Users />} />
-            <Route path="users/add" element={<UserForm />} />
-            <Route path="courses" element={<Courses />} />
-            <Route path="courses/add" element={<AddCourse />} />
-            <Route path="students" element={<Students />} />
-            <Route path="attendance" element={<Attendance />} />
-            <Route path="students/add" element={<AddStudent />} />
+            <Route index element={<MainContent BASE={BASE} />} />
+            <Route path="users" element={<Users BASE={BASE} />} />
+            <Route path="users/add" element={<UserForm BASE={BASE} />} />
+            <Route path="courses" element={<Courses BASE={BASE} />} />
+            <Route path="courses/add" element={<AddCourse BASE={BASE} />} />
+            <Route path="students" element={<Students BASE={BASE} />} />
+            <Route path="attendance" element={<Attendance BASE={BASE} />} />
+            <Route path="students/add" element={<AddStudent BASE={BASE} />} />
           </Route>
         </Routes>
       </Router>

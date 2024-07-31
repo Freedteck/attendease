@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const AddStudent = () => {
+const AddStudent = ({ BASE }) => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [studentId, setStudentId] = useState("");

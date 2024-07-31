@@ -6,7 +6,7 @@ const postReq = (
   setError,
   setJwtToken
 ) => {
-  const BASE = "http://localhost:8080/api/v1";
+  const BASE = "http://192.168.43.49:8080/api/v1";
 
   function setToken(token, date, userRoles) {
     localStorage.setItem("jwtToken", token);

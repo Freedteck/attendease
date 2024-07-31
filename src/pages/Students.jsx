@@ -3,9 +3,7 @@ import StudentsList from "../components/StudentsList";
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const Students = () => {
+const Students = ({ BASE }) => {
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
   const [subjectCode, setSubjectCode] = useState("MAT101");

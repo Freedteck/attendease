@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const UserForm = () => {
+const UserForm = ({ BASE }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
   const [firstName, setFirstName] = useState("");

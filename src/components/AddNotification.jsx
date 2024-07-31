@@ -1,9 +1,7 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const AddNotification = ({ isOpen, handleClose, handleNotification }) => {
+const AddNotification = ({ isOpen, handleClose, handleNotification, BASE }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [validUntil, setValidUntil] = useState("");

@@ -4,9 +4,7 @@ import Notifications from "./Notifications";
 import AddNotification from "./AddNotification";
 import "../styles/notification.css";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const NotificationSection = () => {
+const NotificationSection = ({ BASE }) => {
   const { token, userRoles } = useFetch();
   const [showAddBtn, setShowAddBtn] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -65,6 +63,7 @@ const NotificationSection = () => {
           isOpen={isOpen}
           handleClose={closeForm}
           handleNotification={handleGetNotification}
+          BASE={BASE}
         />
       )}
     </div>

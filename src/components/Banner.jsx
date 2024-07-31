@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const Banner = () => {
+const Banner = ({ BASE }) => {
   const { token } = useFetch();
   const [info, setInfo] = useState("");
 
