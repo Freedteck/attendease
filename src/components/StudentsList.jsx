@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const StudentsList = ({ students }) => {
+const StudentsList = ({ students, handleSuspend }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Function to handle search input change
@@ -35,20 +35,34 @@ const StudentsList = ({ students }) => {
           <tr>
             <th>#</th>
             <th>Student Name</th>
-            {/* <th>Email</th> */}
             <th>Student ID</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredStudents.map((student, index) => (
-            <tr key={`${student[0]}${index}${student[1]}`}>
+            <tr key={`${student.studentId}-${index}`}>
               <td>{index + 1}</td>
               <td>{student.firstname + " " + student.lastname}</td>
-              {/* <td>{student.email}</td> */}
               <td>{student.studentId}</td>
               <td className="table-btn">
-                <button>Suspend</button>
+                {!student.suspended ? (
+                  <button
+                    onClick={() => handleSuspend(student.studentId, true)}
+                  >
+                    Suspend
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleSuspend(student.studentId, false)}
+                    style={{
+                      backgroundColor: "#33CC66",
+                      borderColor: "#33CC66",
+                    }}
+                  >
+                    Restore
+                  </button>
+                )}
               </td>
             </tr>
           ))}
