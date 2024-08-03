@@ -45,3 +45,29 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.modal {
+  width: 100%;
+  min-height: 85vh;
+  background-color: rgba(0, 50, 102, 0.3);
+  display: flex;
+  position: absolute;
+}
+.modal .card {
+  max-width: 550px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  height: 200px;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.modal .card button {
+  align-self: flex-end;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
