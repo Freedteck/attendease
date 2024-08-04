@@ -4,6 +4,9 @@ import Initialize from "./Initialize";
 import NotificationSection from "./NotificationSection";
 
 const MainContent = ({ BASE }) => {
+  const isLecturer = localStorage
+    .getItem("userRoles")
+    .includes("ROLE_LECTURER");
   return (
     <div className="row">
       <div className="right layout">
@@ -12,7 +15,7 @@ const MainContent = ({ BASE }) => {
       </div>
       <div className="left layout">
         <MyCalendar />
-        <Initialize />
+        {isLecturer && <Initialize />}
       </div>
     </div>
   );

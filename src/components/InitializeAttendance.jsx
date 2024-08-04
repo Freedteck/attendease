@@ -94,7 +94,7 @@ const InitializeAttendance = ({ handleClose }) => {
             onChange={(e) => setDuration(e.target.value)}
           />
           <div className="btns">
-            <button type="submit">Add Notification</button>
+            <button type="submit">Initialize attendance</button>
             <button type="button" onClick={handleClose}>
               Cancel
             </button>

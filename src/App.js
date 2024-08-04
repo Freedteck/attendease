@@ -18,14 +18,17 @@ import Attendance from "./pages/Attendance";
 import Courses from "./pages/Courses";
 import AddCourse from "./components/AddCourse";
 import Student from "./pages/Student";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const BASE = "http://localhost:8080/api/v1";
 
 function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
   const [isTokenExpired, setIsTokenExpired] = useState(false);
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRoles"));
 
   const token = localStorage.getItem("jwtToken");
+
   useEffect(() => {
     const expiryDate = new Date(localStorage.getItem("expiryDate"));
 
@@ -39,11 +42,12 @@ function App() {
       } else {
         setJwtToken(token);
         setIsTokenExpired(false);
+        setUserRole(localStorage.getItem("userRoles"));
       }
     } else {
-        localStorage.clear();
-        setJwtToken(null);
-        setIsTokenExpired(true);
+      localStorage.clear();
+      setJwtToken(null);
+      setIsTokenExpired(true);
     }
   }, [token]);
 
@@ -52,28 +56,108 @@ function App() {
       <Router>
         <Header jwtToken={jwtToken} />
         <Routes>
-          {isTokenExpired ? (
-            <Route
-              path="/login"
-              element={<Login setJwtToken={setJwtToken} />}
-            />
-          ) : (
-            <Route path="/login" element={<Navigate to="/" />} />
-          )}
+          <Route
+            path="/login"
+            element={
+              isTokenExpired ? (
+                <Login setJwtToken={setJwtToken} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
           <Route
             path="/"
-            element={jwtToken ? <Home /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoutes
+                element={<Home />}
+                allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_LECTURER"]}
+                userRole={userRole}
+              />
+            }
           >
-            <Route index element={<MainContent BASE={BASE} />} />
-            <Route path="users" element={<Users BASE={BASE} />} />
-            <Route path="users/add" element={<UserForm BASE={BASE} />} />
-            <Route path="courses" element={<Courses BASE={BASE} />} />
-            <Route path="courses/add" element={<AddCourse BASE={BASE} />} />
-            <Route path="students" element={<Students BASE={BASE} />} />
-            <Route path="attendance" element={<Attendance BASE={BASE} />} />
-            <Route path="students/add" element={<AddStudent BASE={BASE} />} />
+            <Route
+              index
+              element={
+                <ProtectedRoutes
+                  element={<MainContent BASE={BASE} />}
+                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_LECTURER"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="users"
+              element={
+                <ProtectedRoutes
+                  element={<Users BASE={BASE} />}
+                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="users/add"
+              element={
+                <ProtectedRoutes
+                  element={<UserForm BASE={BASE} />}
+                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="courses"
+              element={
+                <ProtectedRoutes
+                  element={<Courses BASE={BASE} />}
+                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="courses/add"
+              element={
+                <ProtectedRoutes
+                  element={<AddCourse BASE={BASE} />}
+                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="students"
+              element={
+                <ProtectedRoutes
+                  element={<Students BASE={BASE} />}
+                  allowedRoles={["ROLE_LECTURER"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="attendance"
+              element={
+                <ProtectedRoutes
+                  element={<Attendance BASE={BASE} />}
+                  allowedRoles={["ROLE_LECTURER"]}
+                  userRole={userRole}
+                />
+              }
+            />
+            <Route
+              path="students/add"
+              element={
+                <ProtectedRoutes
+                  element={<AddStudent BASE={BASE} />}
+                  allowedRoles={["ROLE_LECTURER"]}
+                  userRole={userRole}
+                />
+              }
+            />
           </Route>
-          <Route path="student" element={<Student BASE={BASE} />} />
+          <Route path="/student" element={<Student />} />
         </Routes>
       </Router>
     </div>

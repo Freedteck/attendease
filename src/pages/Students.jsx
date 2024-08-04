@@ -92,7 +92,7 @@ const Students = ({ BASE }) => {
       <div className="add">
         <h2>Students</h2>
         <label>
-          Subject
+          Select Subject:
           <select
             name="subject"
             value={subjectCode}

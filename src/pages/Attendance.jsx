@@ -68,7 +68,7 @@ const Attendance = ({ BASE }) => {
           setStudents(data.META_DATA);
         })
         .catch((error) => {
-          console.error("Failed to fetch lecturers:", error);
+          console.error("Failed to fetch sheet:", error);
         });
     };
 
