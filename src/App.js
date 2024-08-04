@@ -157,7 +157,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="/student" element={<Student />} />
+          <Route path="/student" element={<Student BASE={BASE} />} />
         </Routes>
       </Router>
     </div>
