@@ -1,8 +1,9 @@
-const Modal = ({ text, handleClose }) => {
+const Modal = ({ heading, text, handleClose }) => {
   return (
     <div className="form modal">
       <div className="card">
-        <h3>{text}</h3>
+        <h3>{heading}</h3>
+        <p>{text}</p>
         <button onClick={handleClose}>close</button>
       </div>
     </div>

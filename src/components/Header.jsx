@@ -6,11 +6,6 @@ const Header = ({ jwtToken }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(!!jwtToken);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    navigate("/login");
-  };
-
   const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
@@ -28,7 +23,9 @@ const Header = ({ jwtToken }) => {
           <div className="icon">✓</div>
           <div className="text">AttendEase</div>
         </div>
-        {!isLoggedIn && <button onClick={handleLogin}>Login</button>}
+        {!isLoggedIn && (
+          <button onClick={() => navigate("/login")}>Login</button>
+        )}
         {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
       </div>
     </header>

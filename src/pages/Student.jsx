@@ -9,6 +9,7 @@ const Student = ({ BASE }) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [text, setText] = useState(null);
+  const [heading, setHeading] = useState(null);
   const { token } = useFetch();
 
   const handleFileChange = (e) => {
@@ -30,19 +31,25 @@ const Student = ({ BASE }) => {
         },
         body: formData,
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to upload file, please try again!");
+          }
+          response.json();
+        })
         .then((data) => {
           console.log("File uploaded successfully:", data);
-          setText("File uploaded successfully!");
-          // You can handle success messages or other actions here
+          setHeading("File uploaded successfully!");
+          setText("Your image has been uploaded successfully!");
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
-          setText("Error uploading file!", error);
+          setHeading("Error uploading file!");
+          setText(error.message);
           // Handle error here
         });
     } else {
-      console.error("No file selected");
+      setHeading("Can't Upload image");
       setText("No file selected!");
     }
   };
@@ -72,7 +79,9 @@ const Student = ({ BASE }) => {
           </fieldset>
         </form>
       </div>
-      {text && <Modal text={text} handleClose={handleClose} />}
+      {text && (
+        <Modal text={text} handleClose={handleClose} heading={heading} />
+      )}
     </div>
   );
 };

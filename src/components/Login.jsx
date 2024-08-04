@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/form.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import postReq from "../logic/postReq";
 
 const Form = ({ setJwtToken }) => {

@@ -25,8 +25,8 @@ function App() {
   const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
   const [isTokenExpired, setIsTokenExpired] = useState(false);
 
+  const token = localStorage.getItem("jwtToken");
   useEffect(() => {
-    const token = localStorage.getItem("jwtToken");
     const expiryDate = new Date(localStorage.getItem("expiryDate"));
 
     if (token && expiryDate) {
@@ -41,10 +41,11 @@ function App() {
         setIsTokenExpired(false);
       }
     } else {
-      setJwtToken(null);
-      setIsTokenExpired(true);
+        localStorage.clear();
+        setJwtToken(null);
+        setIsTokenExpired(true);
     }
-  }, []);
+  }, [token]);
 
   return (
     <div className="App">
