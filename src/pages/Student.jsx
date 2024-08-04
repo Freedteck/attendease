@@ -33,7 +33,7 @@ const Student = ({ BASE }) => {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error("Failed to upload file, please try again!");
+            throw new Error("Invalid number of faces, please try again!");
           }
           response.json();
         })
@@ -44,7 +44,7 @@ const Student = ({ BASE }) => {
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
-          setHeading("Error uploading file!");
+          setHeading("Image rejected!");
           setText(error.message);
           // Handle error here
         });
