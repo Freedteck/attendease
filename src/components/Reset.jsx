@@ -1,12 +1,16 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import "../styles/initialize.css";
+import Modal from "./Modal";
 
 const BASE = "http://localhost:8080/api/v1";
 
 const Reset = ({ handleClose }) => {
   const [old, setOld] = useState("");
   const [newP, setNewP] = useState("");
+  const [error, setError] = useState(null);
+  const [heading, setHeading] = useState(null);
+  const [text, setText] = useState(null);
   const { token } = useFetch();
 
   const handleSubmit = async (e) => {
@@ -22,13 +26,20 @@ const Reset = ({ handleClose }) => {
         newPassword: newP,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
-        handleClose();
+        if (data.message === "User does not exist") {
+          throw new Error("Password change failed, User not found");
+        }
+        setHeading("Password changed successfully!");
+        setText("Your password has been updated successfully!");
       })
       .catch((error) => {
         console.log("Failed to change password", error);
+        setError(error.message);
       });
   };
 
@@ -44,6 +55,7 @@ const Reset = ({ handleClose }) => {
             name="old"
             value={old}
             min={10}
+            required
             placeholder="Enter your old password"
             onChange={(e) => setOld(e.target.value)}
           />
@@ -55,9 +67,11 @@ const Reset = ({ handleClose }) => {
             name="duration"
             value={newP}
             min={10}
+            required
             placeholder="Enter new password"
             onChange={(e) => setNewP(e.target.value)}
           />
+          {error && <p className="error">{error}</p>}
           <div className="btns">
             <button type="submit">Change Now</button>
             <button type="button" onClick={handleClose}>
@@ -66,6 +80,9 @@ const Reset = ({ handleClose }) => {
           </div>
         </fieldset>
       </form>
+      {text && (
+        <Modal text={text} handleClose={handleClose} heading={heading} />
+      )}
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import Modal from "../components/Modal";
 
 const AddStudent = ({ BASE }) => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [studentId, setStudentId] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
-  const [error, setError] = useState(""); // Added for error handling
+  const [error, setError] = useState("");
+  const [text, setText] = useState(null);
+  const [heading, setHeading] = useState(null);
   const { token } = useFetch();
 
   useEffect(() => {
@@ -52,17 +55,29 @@ const AddStudent = ({ BASE }) => {
       })
       .then((data) => {
         console.log(data);
+        setHeading("Student added successfully!");
+        setText(
+          "Student (" +
+            studentId +
+            ") added to " +
+            subjectCode +
+            " successfully!"
+        );
+        setError("");
       })
       .catch((error) => {
         console.log("Error: ", error);
+        setError(error.message);
       });
   };
 
+  const handleClose = () => {
+    setText(null);
+    navigate(-1);
+  };
   const handleClick = (e) => {
     e.preventDefault();
-    setError("");
     addStudent();
-    navigate(-1);
   };
   return (
     <div className="layout">
@@ -99,6 +114,7 @@ const AddStudent = ({ BASE }) => {
           {error && <p className="error">{error}</p>} <button>Add Now</button>
         </fieldset>
       </form>
+      {text && Modal({ text, handleClose, heading })}
     </div>
   );
 };

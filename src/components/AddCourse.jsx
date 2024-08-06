@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
+import Modal from "./Modal";
 
 const AddCourse = ({ BASE }) => {
   const navigate = useNavigate();
   const { token } = useFetch();
   const [subjectCode, setSubjectCode] = useState("");
   const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [heading, setHeading] = useState("");
   const [lecturerInCharge, setLecturerInCharge] = useState("");
   const [lecturers, setLecturers] = useState([]);
 
@@ -14,10 +17,13 @@ const AddCourse = ({ BASE }) => {
     e.preventDefault();
     if (title && subjectCode && lecturerInCharge) {
       addCourse();
-      navigate(-1);
     }
   };
 
+  const handleClose = () => {
+    setText(null);
+    navigate(-1);
+  };
   const addCourse = async () => {
     await fetch(`${BASE}/admin/add-subject`, {
       method: "POST",
@@ -32,9 +38,21 @@ const AddCourse = ({ BASE }) => {
         id_lecturer_in_charge: lecturerInCharge,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error(`${title} Already Exists!`);
+        }
+        response.json();
+      })
       .then((data) => {
         console.log(data);
+        setHeading("Course added successfully!");
+        setText(`${title} (${subjectCode}) has been added successfully!`);
+      })
+      .catch((error) => {
+        console.log("Failed to add course", error);
+        setHeading("Course not added!");
+        setText(error.message);
       });
   };
 
@@ -60,26 +78,26 @@ const AddCourse = ({ BASE }) => {
     <div className="layout">
       <h2>Add Course</h2>
 
-      <form>
+      <form onSubmit={handleClick}>
         <fieldset>
           <legend>Add a Course</legend>
-          <label htmlFor="subject-code">Subject Code</label>
+          <label htmlFor="course-code">Course Code</label>
           <input
             type="text"
-            name="subject-code"
-            id="subject-code"
+            name="course-code"
+            id="course-code"
             required
-            placeholder="Add Subject code"
+            placeholder="Add Course code"
             value={subjectCode}
             onChange={(e) => setSubjectCode(e.target.value)}
           />
-          <label htmlFor="title">Subject Title</label>
+          <label htmlFor="title">Course Title</label>
           <input
             type="text"
-            name="subject-title"
+            name="course-title"
             id="title"
             required
-            placeholder="Add Subject title"
+            placeholder="Add Course title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -100,9 +118,12 @@ const AddCourse = ({ BASE }) => {
               </option>
             ))}
           </select>
-          <button onClick={handleClick}>Add Now</button>
+          <button>Add Now</button>
         </fieldset>
       </form>
+      {text && (
+        <Modal text={text} handleClose={handleClose} heading={heading} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/header.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 
 const Header = ({ jwtToken, BASE }) => {
@@ -46,10 +46,12 @@ const Header = ({ jwtToken, BASE }) => {
   return (
     <header>
       <div className="container">
-        <div className="logo">
-          <div className="icon">✓</div>
-          <div className="text">AttendEase</div>
-        </div>
+        <Link to={"/"}>
+          <div className="logo">
+            <div className="icon">✓</div>
+            <div className="text">AttendEase</div>
+          </div>
+        </Link>
         {!isLoggedIn && (
           <button onClick={() => navigate("/login")}>Login</button>
         )}
