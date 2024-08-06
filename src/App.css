@@ -107,3 +107,12 @@ table tbody tr:last-child td {
   padding: 20px;
   border-radius: 10px;
 }
+.modal {
+  width: 100%;
+  min-height: 85vh;
+  background-color: rgba(0, 50, 102, 0.3);
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -38,6 +38,12 @@ const postReq = (
         setToken(data.jwt_token, data.expiryDate, data.user_roles);
         navigate("/");
       } else if (
+        data.user_roles.includes("ROLE_ADMIN") &&
+        category === "admin"
+      ) {
+        setToken(data.jwt_token, data.expiryDate, data.user_roles);
+        navigate("/");
+      } else if (
         data.user_roles.includes("ROLE_LECTURER") &&
         category === "lecturer"
       ) {

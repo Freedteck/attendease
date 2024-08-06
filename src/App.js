@@ -71,7 +71,11 @@ function App() {
             element={
               <ProtectedRoutes
                 element={<Home />}
-                allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_LECTURER"]}
+                allowedRoles={[
+                  "ROLE_SUPER_ADMIN",
+                  "ROLE_LECTURER",
+                  "ROLE_ADMIN",
+                ]}
                 userRole={userRole}
               />
             }
@@ -81,7 +85,11 @@ function App() {
               element={
                 <ProtectedRoutes
                   element={<MainContent BASE={BASE} />}
-                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_LECTURER"]}
+                  allowedRoles={[
+                    "ROLE_SUPER_ADMIN",
+                    "ROLE_LECTURER",
+                    "ROLE_ADMIN",
+                  ]}
                   userRole={userRole}
                 />
               }
@@ -91,7 +99,7 @@ function App() {
               element={
                 <ProtectedRoutes
                   element={<Users BASE={BASE} />}
-                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_ADMIN"]}
                   userRole={userRole}
                 />
               }
@@ -101,7 +109,7 @@ function App() {
               element={
                 <ProtectedRoutes
                   element={<UserForm BASE={BASE} />}
-                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_ADMIN"]}
                   userRole={userRole}
                 />
               }
@@ -111,7 +119,7 @@ function App() {
               element={
                 <ProtectedRoutes
                   element={<Courses BASE={BASE} />}
-                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_ADMIN"]}
                   userRole={userRole}
                 />
               }
@@ -121,7 +129,7 @@ function App() {
               element={
                 <ProtectedRoutes
                   element={<AddCourse BASE={BASE} />}
-                  allowedRoles={["ROLE_SUPER_ADMIN"]}
+                  allowedRoles={["ROLE_SUPER_ADMIN", "ROLE_ADMIN"]}
                   userRole={userRole}
                 />
               }

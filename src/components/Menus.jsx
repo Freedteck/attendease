@@ -28,7 +28,7 @@ const Menus = () => {
             Home
           </NavLink>
         </li>
-        {role.includes("ROLE_SUPER_ADMIN") && (
+        {(role.includes("ROLE_SUPER_ADMIN") || role.includes("ROLE_ADMIN")) && (
           <>
             <li>
               <NavLink

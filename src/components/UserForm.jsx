@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import Modal from "./Modal";
 
 const UserForm = ({ BASE }) => {
   const navigate = useNavigate();
@@ -9,7 +10,9 @@ const UserForm = ({ BASE }) => {
   const [lastName, setLastName] = useState("");
   const [schoolEmail, setSchoolEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [role, setRole] = useState("instructor");
+  const [heading, setHeading] = useState("");
+  const [text, setText] = useState("");
+  const [role, setRole] = useState("admin");
   const { token } = useFetch();
 
   const handleClick = (e) => {
@@ -31,16 +34,28 @@ const UserForm = ({ BASE }) => {
       }),
     })
       .then((response) => {
+        if (response.status === 401) {
+          throw new Error("Unauthorized");
+        } else if (response.status !== 200) {
+          throw new Error("User already exists!");
+        }
         return response.json();
       })
       .then((data) => {
         console.log(data);
-        navigate(-1);
+        setHeading("User added successfully!");
+        setText(`${firstName} ${lastName} has been added as ${role}!`);
       })
       .catch((error) => {
-        // Show an error message to the user
         console.error("Login failed:", error);
+        setHeading("User not added!");
+        setText(error.message);
       });
+  };
+
+  const handleClose = () => {
+    setText(null);
+    navigate(-1);
   };
   return (
     <div className="layout">
@@ -49,6 +64,16 @@ const UserForm = ({ BASE }) => {
         <fieldset>
           <legend>Add a User</legend>
           <fieldset className="radio">
+            <label className="role">
+              <input
+                type="radio"
+                name="role"
+                value={"admin"}
+                checked={role === "admin"}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              Admin
+            </label>
             <label className="role">
               <input
                 type="radio"
@@ -132,6 +157,9 @@ const UserForm = ({ BASE }) => {
           <button>Add Now</button>
         </fieldset>
       </form>
+      {text && (
+        <Modal text={text} handleClose={handleClose} heading={heading} />
+      )}
     </div>
   );
 };

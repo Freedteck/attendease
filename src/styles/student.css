@@ -45,13 +45,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.modal {
-  width: 100%;
-  min-height: 85vh;
-  background-color: rgba(0, 50, 102, 0.3);
-  display: flex;
-  position: absolute;
-}
 .modal .card {
   max-width: 550px;
   width: 100%;

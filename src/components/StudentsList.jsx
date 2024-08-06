@@ -36,6 +36,7 @@ const StudentsList = ({ students, handleSuspend }) => {
             <th>#</th>
             <th>Student Name</th>
             <th>Student ID</th>
+            <th>Score</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -45,6 +46,14 @@ const StudentsList = ({ students, handleSuspend }) => {
               <td>{index + 1}</td>
               <td>{student.firstname + " " + student.lastname}</td>
               <td>{student.studentId}</td>
+              <td
+                style={{
+                  color: student.percentage < 70 ? "red" : "green",
+                  fontWeight: "bold",
+                }}
+              >
+                {student.percentage} %
+              </td>
               <td className="table-btn">
                 {!student.suspended ? (
                   <button
