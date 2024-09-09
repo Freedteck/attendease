@@ -3,9 +3,7 @@ import useFetch from "../hooks/useFetch";
 import "../styles/initialize.css";
 import Modal from "./Modal";
 
-const BASE = "http://localhost:8080/api/v1";
-
-const Reset = ({ handleClose }) => {
+const Reset = ({ handleClose, BASE }) => {
   const [old, setOld] = useState("");
   const [newP, setNewP] = useState("");
   const [error, setError] = useState(null);

@@ -3,7 +3,7 @@ import "../styles/form.css";
 import { useNavigate } from "react-router-dom";
 import postReq from "../logic/postReq";
 
-const Form = ({ setJwtToken }) => {
+const Form = ({ setJwtToken, BASE }) => {
   const [category, setCategory] = useState("lecturer");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ const Form = ({ setJwtToken }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    postReq(userId, password, category, navigate, setError, setJwtToken); // Pass setJwtToken function
+    postReq(userId, password, category, navigate, setError, setJwtToken, BASE); // Pass setJwtToken function
   };
 
   return (

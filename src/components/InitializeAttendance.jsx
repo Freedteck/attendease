@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import "../styles/initialize.css";
 
-const BASE = "http://localhost:8080/api/v1";
 
-const InitializeAttendance = ({ handleClose }) => {
+const InitializeAttendance = ({ handleClose, BASE }) => {
   const [duration, setDuration] = useState(0);
   const [subjectCode, setSubjectCode] = useState("");
   const [courses, setCourses] = useState([]);

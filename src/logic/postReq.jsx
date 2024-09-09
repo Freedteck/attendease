@@ -4,10 +4,9 @@ const postReq = (
   category,
   navigate,
   setError,
-  setJwtToken
+  setJwtToken,
+  BASE
 ) => {
-  const BASE = "http://localhost:8080/api/v1";
-
   function setToken(token, date, userRoles) {
     localStorage.setItem("jwtToken", token);
     localStorage.setItem("expiryDate", date);

@@ -60,7 +60,7 @@ function App() {
             path="/login"
             element={
               isTokenExpired ? (
-                <Login setJwtToken={setJwtToken} />
+                <Login setJwtToken={setJwtToken} BASE={BASE} />
               ) : (
                 <Navigate to="/" />
               )
