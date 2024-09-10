@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import "../styles/initialize.css";
 
-
 const InitializeAttendance = ({ handleClose, BASE }) => {
   const [duration, setDuration] = useState(0);
   const [subjectCode, setSubjectCode] = useState("");
@@ -25,7 +24,7 @@ const InitializeAttendance = ({ handleClose, BASE }) => {
     };
 
     getCourses();
-  }, [token]);
+  }, [token, BASE]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

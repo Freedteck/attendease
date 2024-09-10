@@ -16,6 +16,8 @@ const Form = ({ setJwtToken, BASE }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("sumitting...");
+
     setError("");
     postReq(userId, password, category, navigate, setError, setJwtToken, BASE); // Pass setJwtToken function
   };
@@ -33,6 +35,7 @@ const Form = ({ setJwtToken, BASE }) => {
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
             required
+            autoComplete="on"
             placeholder="Enter your id"
           />
           <label htmlFor="password">Password:</label>
@@ -43,6 +46,7 @@ const Form = ({ setJwtToken, BASE }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="on"
             placeholder="Enter your password"
           />
           <fieldset className="radio">

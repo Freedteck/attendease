@@ -23,7 +23,6 @@ const postReq = (
     body: JSON.stringify({ id: userId, password, role: category }),
   })
     .then((response) => {
-      console.log(response);
       if (!response.ok) {
         throw new Error("Login failed");
       }

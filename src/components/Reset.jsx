@@ -13,6 +13,8 @@ const Reset = ({ handleClose, BASE }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(BASE);
+
     await fetch(`${BASE}/auth/updatePassword`, {
       method: "PUT",
       headers: {
@@ -52,7 +54,6 @@ const Reset = ({ handleClose, BASE }) => {
             id="old"
             name="old"
             value={old}
-            min={10}
             required
             placeholder="Enter your old password"
             onChange={(e) => setOld(e.target.value)}
@@ -64,7 +65,7 @@ const Reset = ({ handleClose, BASE }) => {
             id="duration"
             name="duration"
             value={newP}
-            min={10}
+            min={8}
             required
             placeholder="Enter new password"
             onChange={(e) => setNewP(e.target.value)}
