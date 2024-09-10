@@ -74,6 +74,9 @@ const AttendanceCapture = ({
                     screenshotFormat="image/jpeg"
                     width={300}
                     height={300}
+                    videoConstraints={{
+                      facingMode: "user", // Use "user" for front camera, "environment" for back camera
+                    }}
                   />
                 )}
               </>
