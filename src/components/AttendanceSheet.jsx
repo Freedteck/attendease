@@ -18,7 +18,7 @@ const AttendanceSheet = ({ students, setSortID }) => {
       );
     } else {
       updatedStudents = students;
-      setSortID(0);
+      setSortID(1);
     }
     setFilteredStudents(updatedStudents);
   }, [sortOrder, students, setSortID]);
